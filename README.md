@@ -3,7 +3,7 @@
   PHP es el acrónimo de PHP (Personal Home Page) Hypertext Preprocessor.
 Es un Lenguaje de Scripting del lado del Servidor. 
 
-##Sintaxis básica
+##Sintaxis básica##
 
 • PHP es sensible a las mayúsculas
 
@@ -76,7 +76,7 @@ include ("pie.html");
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-##Tipos de datos
+##Tipos de datos##
 
 • PHP soporta 8 tipos de datos primitivos:
   – Tipos comunes: boolean, integer, double, string
@@ -133,7 +133,7 @@ include ("pie.html");
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-##Variables
+##Variables##
 
 • El Nombre del las variables siempre van precedidas de un $
 
@@ -187,7 +187,7 @@ de congelación del agua, el nombre de la Empresa, etcétera.
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-##Expresiones y operadores
+##Expresiones y operadores##
 
 • Operadores aritméticos:
   +, -, *, /, %, ++, --
@@ -300,7 +300,7 @@ Finalización de la ejecución de un programa
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-##Funciones
+##Funciones##
 
 • Por defecto los parámetros se pasan por valor
 
@@ -350,7 +350,7 @@ Estimado Prof. Fernández:
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Arrays (Tablas)
+##Arrays (Tablas)##
 
 • Sintaxis:
   array ([clave =>] valor, ...)
@@ -407,7 +407,7 @@ $mi_array[] = 54; // índice 1
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-Bibliotecas de funciones
+##Bibliotecas de funciones##
 
 • Existen muchas bibliotecas de funciones en PHP
 
@@ -484,7 +484,7 @@ Bibliotecas de funciones
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-##Formularios
+##Formularios##
 
 1. Acceso a formularios HTML desde PHP
   • Fichero uno.php
@@ -631,7 +631,7 @@ $edad = $_REQUEST[‘edad’];
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-  ##Sesiones
+  ##Sesiones##
     1. Introducción
     2. Manejo de sesiones
     3. Autenticación de usuarios
@@ -681,7 +681,7 @@ Devuelve o setea el id de la sesión actual
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-##Cookies
+##Cookies##
 
 Son los archivos alojados en el cliente que nos permiten identificar una petición determinada.
 Cada vez que el navegador realiza una petición a un dominio, si hay una cookie asociada, esta se envía al servidor junto con la petición.
@@ -698,6 +698,183 @@ Devuelve o setea el id de la sesión actual
   setcookie("user", "", time()-3600);
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+##Acceso a bases de datos MySQL en PHP##
+    1. Herramientas de administración: phpMyAdmin
+    2. Lenguaje SQL
+    3. Funciones de PHP para el acceso a bases de datos MySQL
+
+     • phpMyAdmin es una herramienta para la administración del servidor de bases de datos MySQL
+
+      • Dispone de una interfaz gráfica y es de libre distribución
+      • Permite realizar todo tipo de operaciones sobre bases de datos:
+        – crear, borrar y modificar tablas
+        – consultar, insertar, modificar y eliminar datos
+        – definir usuarios y asignar permisos
+        – realizar copias de seguridad
+        – etc
+
+• Está escrita en php y se ejecuta desde el navegador
+
+• Si está instalada en la carpeta phpmyadmin, se ejecuta escribiendo en la barra de direcciones del navegador la url http://localhost/phpmyadmin/
+
+• Puede administrar bases de datos locales y remotas
+
+• SQL (Structured Query Language) es el lenguaje que se utiliza para comunicarse con la base de datos
+
+• Procedimiento de comunicación con la base de datos: 
+
+• Los pasos para acceder desde PHP a una base de datos son los siguientes:
+    – Conectar con el servidor de bases de datos
+    – Seleccionar una base de datos
+    – Enviar la instrucción SQL a la base de datos
+    – Obtener y procesar los resultados
+    – Cerrar la conexión con el servidor de bases de datos
+
+• Existen cuatro maneras de acceder a una base de datos MySQL:
+
+• Utilizando las funciones mysql. Este método esta definido como obsoleto a partir de la versión 5.5.0 de PHP y fue removido a partir de la versión 7.0.0 por lo tanto 
+no es recomendable su utilización, pero podemos encontrarnos con mucho código que aun hace uso de ellas.
+
+• Utilizando las funciones mysqli. Son el reemplazo natural de las funciones mysql, se pueden utilizar de dos maneras:
+    – Formato procedural
+    – Orientado a Objetos
+
+• Utilizando PDO (PHP Data Objects). La librería de acceso a datos PDO nos entrega una capa de abstracción de datos que nos permite utilizar el
+mismo código de acceso a datos sin importar el motor de base de datos que utilicemos. Usa el paradigm de Objetos para su construcción.
+
+MySQL Procedural
+  Conectar con el servidor de bases de datos y seleccion de base de datos:
+mysqli_connect()
+  – Devuelve un objeto de la conexión en caso de éxito y false en caso contrario
+• Sintaxis:
+  $conexion = mysqli_connect(servidor, usuario, password, bd );
+
+• Ejemplo:
+  $conexion = mysqli_connect(“localhost”, “cursophp”, “”, “base”)
+  or die (“No se puede conectar con el servidor”);
+
+MySQL Procedural
+  Enviar la instrucción SQL a la base de datos: mysqli_query(conexion , query)
+    – Devuelve un identificador o true (dependiendo de la instrucción) si la instrucción se ejecuta correctamente y false en caso contrario
+
+• Sintaxis:
+  $consulta = mysqli_query(conexion, instruccion sql);
+  Ejemplo:
+    $conexion = mysqli_connect(“localhost”, “cursophp”, “”, “base”)
+    or die (“No se puede conectar con el servidor”);
+    $consulta = mysqli_query($conexion, “select * from noticias”) or
+    die (“Fallo en la consulta”);
+
+• Obtener y procesar los resultados: mysqli_num_rows(), mysqli_fetch_assoc()
+
+• En el caso de que la instrucción enviada produzca unos resultados, mysqli_query() devuelve las filas de la tabla afectadas por la instrucción
+    – mysqli_num_rows() devuelve el número de filas afectadas
+    – Para obtener las distintas filas del resultado se utilizan la función mysqli_fetch_assoc()
+
+• Sintaxis:
+    $nfilas = mysqli_num_rows(linkConsulta);
+    $fila = mysqli_fetch_assoc(linkConsulta);
+  Ejemplo:
+    $conexion = mysqli_connect(“localhost”, “cursophp”, “”, “base”)
+    $consulta = mysqli_query($conexion, “select * from noticias”)
+    $nfilas = mysqli_num_rows($consulta);
+    $fila = mysqli_fetch_assoc($consulta);
+
+• Cerrar la conexión con el servidor de bases de datos:
+    mysqli_close()
+
+• Sintaxis:
+    mysqli_close($conexion);
+
+• Ejemplo
+    $conexion = mysqli_connect(“localhost”, “root”, “”, “diario”);
+    $sql = “select * from noticias where categoria='promociones' “;
+    $consulta = mysqli_query($conexion, $sql);
+    $nfilas = mysqli_num_rows($consulta);
+    echo $nfilas . “<br>”;
+    while($fila = mysqli_fetch_assoc($consulta)) {
+      echo $fila[“Id”];
+      echo $fila[“texto”] . “<br>”;
+    }
+    mysqli_close($conexion);
+
+MySQL Orientado a Objetos – Conexión
+
+<?php
+  $server = "localhost";
+  $user = “usuario";
+  $password = “clave";
+  $conn = new mysqli($server, $user, $password);
+  if ($conn->connect_error) {
+    die(“Fallo la conexion: " . $conn->connect_error);
+  }
+    echo “Conexión exitosa”;
+?>
+
+MySQL Orientado a Objetos – Inserción de Datos
+
+<?php
+  … Conexión
+  $sql = "INSERT INTO tabla (campo1, campo2, campo3)
+  VALUES ('Juan', ‘Perez', 'juan@example.com')";
+  if ($conn->query($sql) === TRUE) {
+    echo “Registro Creado";
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+  $conn->close();
+?>
+
+MySQL Orientado a Objetos – Obtención de el ultimo ID
+
+<?php
+  … Conexión
+  $sql = "INSERT INTO tabla (campo1, campo2, campo3)
+  VALUES ('Juan', ‘Perez', 'juan@example.com')";
+  if ($conn->query($sql) === TRUE) {
+    $last_id = $conn->insert_id;
+    echo “La ultima Id Insertada: " . $last_id;
+  } else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+  }
+  $conn->close();
+?>
+
+MySQL Orientado a Objetos – Obtener Registros
+
+<?php
+  … Conexión
+  $sql = "SELECT id, nombre, apellido FROM tabla";
+  $result = $conn->query($sql);
+  if ($result->num_rows > 0) {
+    while($row = $result->fetch_assoc()) {
+      echo "id: " . $row["id"]. " - Nombre: " .
+      $row[“nombre"]. " " . $row[“apellido"]. "<br>";
+    }
+  } else {
+      echo “Resultado: 0";
+}
+  $conn->close();
+?>
+
+MySQL Orientado a Objetos – Prepared Statments
+
+<?php
+  … Conexión
+  $stmt = $conn->prepare("INSERT INTO tabla (nombre, apellido, email) VALUES (?, ?, ?)");
+  $stmt->bind_param("sss", $nombre, $apellido, $email);
+  $nombre = “Juan";
+  $apellido = “Perez";
+  $email = "juan@example.com";
+  $stmt->execute();
+  $nombre = “Maria";
+  $apellido = “Garcia";
+  $email = "maria@example.com";
+  $stmt->execute();
+  $stmt->close();
+  $conn->close();
+?>
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 

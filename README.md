@@ -683,19 +683,19 @@ Devuelve o setea el id de la sesión actual
 
 ##Cookies##
 
-Son los archivos alojados en el cliente que nos permiten identificar una petición determinada.
-Cada vez que el navegador realiza una petición a un dominio, si hay una cookie asociada, esta se envía al servidor junto con la petición.
-PHP nos entrega una serie de Funciones y variables predefinidas para crear y acceder a cookies
+    Son los archivos alojados en el cliente que nos permiten identificar una petición determinada.
+    Cada vez que el navegador realiza una petición a un dominio, si hay una cookie asociada, esta se envía al servidor junto con la petición.
+    PHP nos entrega una serie de Funciones y variables predefinidas para crear y acceder a cookies
 
-Funciones
-  setcookie(nombre, valor, expiracion, path, dominio, secure, httponly (5.2.0));
-    Crea o elimina una cookie
-  setrawcookie(nombre, valor, expiracion, path,  dominio, secure, httponly);
-    Recuperación de una cookie
-  Se utiliza la variable predefinida $_COOKIE[] o
-  $HTTP_COOKIE_VARS (deprecated)
-    Limpiar una cookie
-  setcookie("user", "", time()-3600);
+    Funciones
+      setcookie(nombre, valor, expiracion, path, dominio, secure, httponly (5.2.0));
+        Crea o elimina una cookie
+      setrawcookie(nombre, valor, expiracion, path,  dominio, secure, httponly);
+        Recuperación de una cookie
+        Se utiliza la variable predefinida $_COOKIE[] o
+      $HTTP_COOKIE_VARS (deprecated)
+        Limpiar una cookie
+      setcookie("user", "", time()-3600);
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -714,34 +714,34 @@ Devuelve o setea el id de la sesión actual
         – realizar copias de seguridad
         – etc
 
-• Está escrita en php y se ejecuta desde el navegador
+      • Está escrita en php y se ejecuta desde el navegador
 
-• Si está instalada en la carpeta phpmyadmin, se ejecuta escribiendo en la barra de direcciones del navegador la url http://localhost/phpmyadmin/
+      • Si está instalada en la carpeta phpmyadmin, se ejecuta escribiendo en la barra de direcciones del navegador la url http://localhost/phpmyadmin/
 
-• Puede administrar bases de datos locales y remotas
+      • Puede administrar bases de datos locales y remotas
 
-• SQL (Structured Query Language) es el lenguaje que se utiliza para comunicarse con la base de datos
+      • SQL (Structured Query Language) es el lenguaje que se utiliza para comunicarse con la base de datos
 
-• Procedimiento de comunicación con la base de datos: 
+      • Procedimiento de comunicación con la base de datos: 
 
-• Los pasos para acceder desde PHP a una base de datos son los siguientes:
-    – Conectar con el servidor de bases de datos
-    – Seleccionar una base de datos
-    – Enviar la instrucción SQL a la base de datos
-    – Obtener y procesar los resultados
-    – Cerrar la conexión con el servidor de bases de datos
+      • Los pasos para acceder desde PHP a una base de datos son los siguientes:
+        – Conectar con el servidor de bases de datos
+        – Seleccionar una base de datos
+        – Enviar la instrucción SQL a la base de datos
+        – Obtener y procesar los resultados
+        – Cerrar la conexión con el servidor de bases de datos
 
-• Existen cuatro maneras de acceder a una base de datos MySQL:
+      • Existen cuatro maneras de acceder a una base de datos MySQL:
 
-• Utilizando las funciones mysql. Este método esta definido como obsoleto a partir de la versión 5.5.0 de PHP y fue removido a partir de la versión 7.0.0 por lo tanto 
-no es recomendable su utilización, pero podemos encontrarnos con mucho código que aun hace uso de ellas.
+      • Utilizando las funciones mysql. Este método esta definido como obsoleto a partir de la versión 5.5.0 de PHP y fue removido a partir de la versión 7.0.0 por 
+      lo tanto no es recomendable su utilización, pero podemos encontrarnos con mucho código que aun hace uso de ellas.
 
-• Utilizando las funciones mysqli. Son el reemplazo natural de las funciones mysql, se pueden utilizar de dos maneras:
-    – Formato procedural
-    – Orientado a Objetos
+      • Utilizando las funciones mysqli. Son el reemplazo natural de las funciones mysql, se pueden utilizar de dos maneras:
+        – Formato procedural
+        – Orientado a Objetos
 
-• Utilizando PDO (PHP Data Objects). La librería de acceso a datos PDO nos entrega una capa de abstracción de datos que nos permite utilizar el
-mismo código de acceso a datos sin importar el motor de base de datos que utilicemos. Usa el paradigm de Objetos para su construcción.
+      • Utilizando PDO (PHP Data Objects). La librería de acceso a datos PDO nos entrega una capa de abstracción de datos que nos permite utilizar el
+      mismo código de acceso a datos sin importar el motor de base de datos que utilicemos. Usa el paradigm de Objetos para su construcción.
 
 MySQL Procedural
   Conectar con el servidor de bases de datos y seleccion de base de datos:
@@ -878,5 +878,139 @@ MySQL Orientado a Objetos – Prepared Statments
 
 ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+##Acceso a bases de datos MySQL en PHP##
 
-  
+Abstracción
+
+• Es un proceso mental donde las ideas son separadas de los objetos concretos, subjetivo y dependiente del entorno.
+• El objetivo es separar efectivamente los objetos de la vida real de los conceptos acerca de esos objetos que deseamos representar.
+• En la Programación Orientada a Objetos la abstracción se plantea en términos de similitudes entre fenómenos, conceptos, entidades, etc., de esta manera, logramos
+generalizamos conceptos (persona, auto, etc.) que puedan ser traducidos a construcciones básicas (objetos) en nuestro paradigma.
+
+Modelado
+
+¿Qué es un modelo?
+Es una versión acotada a algunas dimensiones especificas de hecho o entidad del mundo real.
+
+¿Qué significa modelar?
+Modelar implica abstraer, lograr una síntesis dimensional de el objeto, hecho, o entidad que queramos representar. Siempre se trata de lograr una version reducida de lo
+que queremos representar, especificando solo aquellas cosas que sos relevantes para el dominio del problema.
+
+Modelo Orientado a Objetos
+En un Modelo Orientado a Objeto, los conceptos del dominio del problema que se requieren representar se mapean en forma de objetos.
+Los objetos son colecciones de características y actividades agrupadas según un concepto común, que se relacionan con otros objetos para formar un modelo simulado
+del comportamiento de una parte de la realidad que deseamos representar.
+
+Programación Orientada a Objetos
+
+• En la programación orientada a objetos, los sistemas están compuestos por un conjunto de objetos, que representan entidades significativas del mundo real.
+• Los objetos son responsables de llevar a cabo ciertas acciones y colaboran entre si para llevar a cabo sus tareas. Además pueden componer otros objetos
+• Los programas están organizados en base a clases (definición conceptual de un objeto) y jerarquías de herencia
+• Un objeto que lleva a cabo una determinada tarea al serle solicitada mediante un mensaje.
+
+POO y PHP
+
+• PHP es un lenguaje que permite realizar programación orientada a objetos, pero no contempla todas las características de un lenguaje desarrollado para ello.
+• Soporta definición de clases, instanciación de objetos, y herencia, pero no soporta en forma estándar herencia múltiple ni polimorfismo.
+• Podemos combinar en PHP programación estructurada con POO
+• La base de la POO en PHP es la definición de Clase
+
+Clases en PHP
+
+<?php
+class Perro {
+private $nombre;
+public function Perro() {
+$this->nombre = "cachilo";
+}
+public function ladrar() {
+echo "guauu<br>";
+}
+public function devolverNombre() {
+echo $this->nombre;
+}
+}
+?>
+
+La clase es la definición de la estructura y funcionalidad (atributos y comportamiento) del objeto. Al definirla estamos definiendo la matriz a partir de la cual 
+se crearan los objetos. Sólo tienen existencia real en forma de objetos una vez instanciados.
+
+Constructor
+Constructor es un método que se ejecuta al instanciarse la clase.
+Se define construyendo un método utilizando el nombre reservado __construct () (a partir de PHP 5).
+En PHP 5 también introduce el concepto de __destruct, o método destructor que se ejecuta cada vez que se destruyr un objeto.
+En versiones anteriores se podía utilizar un método con el mismo nombre que la clase como constructor (PHP 3 y PHP 4), pero a partir de PHP 7 esto esta obsoleto por 
+lo tanto se recomienda utilizar siempre las palabras reservadas __construct y __destruct
+
+Ámbito
+El ámbito de cada objeto instanciado es independiente de cualquier otro objeto de la misma clase, esto es si $perro1 y $perro2 son dos instancias de la clase perro,
+$perro1->nombre es diferente de $perro2->nombre.
+Hay tres modificadores de ámbito (Public, Private y Protected)
+Public: Si defino así un método o propiedad, el mismo es accesible desde el exterior del objeto
+Private:Si defino así un método o propiedad, el mismo es no accesible desde el exterior del objeto, solo se lo puede llamar dentro del código de la misma clase
+Protected:Si defino así un método o propiedad, el mismo es accesible desde la clase y sus clases heredadas.
+
+Herencia
+Si bien las Clases en PHP no implementan herencia completa ni múltiple, si implementan formas básicas de herencia lo que nos permite extender una clase.
+<?PHP
+class ovejero extends perro {
+public $tamano;
+public funtion set_tipo($peso) {
+if ($peso > 30) {
+$this->tamano = “Grande”;
+} else {
+$this->tamano = “Chico”;
+}
+}
+}
+?>
+
+Asimismo se puede sobrescribir un método existente en una clase extendida.
+<?PHP
+class ovejero extends perro {
+public $tamano;
+public funtion set_tipo($peso) {
+if ($peso > 30) {
+$this->tamano = “Grande”;
+} else {
+$this->tamano = “Chico”;
+}
+}
+public function ladrar() {
+echo “Wofff!!!”;
+}
+}
+?>
+
+Herencia - Constructor
+1. Si la clase extendida posee un constructor, se ejecuta y no se ejecuta el constructor de la clase padre.
+2. Si la clase extendida no tiene constructor, se ejecuta la de la clase padre
+3. Si no existe constructor, no se ejecuta
+4. Se puede ejecutar el constructor del padre llamándolo explícitamente ( parent::__construct() )
+
+Objetos dentro de Objetos
+El valor de una propiedad de una clase puede ser otra clase instanciada.
+
+Operador de Resolución de Alcance (::)
+Permite utilizar un método de una clase padre en una clase extendida o llamar a métodos de una clase aún no instanciada
+
+Operador de Resolución de Alcance (::)
+<?php
+class A {
+function example() {
+echo "I am the original function A::example().<br />\n";
+}
+}
+class B extends A {
+function example() {
+echo "I am the redefined function B::example().<br />\n";
+}
+}
+A::example();
+$b = new B;
+$b->example();
+?>
+
+Operador de Resolución de Alcance (::)
+Permite utilizar un método de una clase padre en una clase extendida o llamar a métodos de una clase aún no instanciada –
+También se puede utilizar la palabra reservada parent parent::example();
